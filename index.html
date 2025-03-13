@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" async
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    <title>From Coarse-Grained to Super-Class</title>
+    <script type="text/x-mathjax-config">
+        MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
+        "HTML-CSS": { availableFonts: ["TeX"] },
+        TeX: { extensions: ["AMSmath.js", "AMSsymbols.js", "boldsymbol.js", "mhchem.js"] }
+        });
+    </script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+        }
+
+        .roman-numeral {
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+        }
+
+        header {
+            background-color: white;
+            padding: 30px 0;
+            color: white;
+            text-align: center;
+        }
+
+        h1 {
+            color: black;
+            font-size: 33px;
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        section {
+            margin: 40px 0;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        h2 {
+            color: #007BFF;
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 5px;
+            margin-bottom: 20px;
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        code {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            display: block;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        figure {
+            margin: 20px 0;
+        }
+
+        figcaption {
+            color: #777;
+            font-style: italic;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        footer {
+            background-color: white;
+            padding: 20px 0;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1 style="white-space: pre-line;">
+            From Coarse-Grained to Super-Class: 
+            Exploring the Extremes of Data Granularity via Contrastive Learning
+        </h1>
+        <div class="author">
+            <p>Anonymous Submission</p>
+            <div class="affiliation">
+                <p>School of Information, Renmin University of China, Beijing, 100872, China</p>
+                <p> School of Statistics, Renmin University of China, Beijing, 100872, China</p>
+                <p>Engineering Research Center of Database and Business Intelligence, MOE, China</p>
+            </div>
+        </div>
+        <p>Contact: TODO</p>
+    </header>
+
+    <div class="container">
+        <section id="abstract">
+            <h2>1. Abstract</h2>
+            <p>TODO</p>
+        </section>
+
+        <section id="problem">
+            <h2>2. Problem Definition</h2>
+            <ul>
+                <li><span style="color: green;"><u>(Section <span class="roman-numeral">I & III-A</span>)</u></span>
+                    This paper focuses on superclass learning, where <span style="color: blue;">traditional
+                        coarse-grained classification methods perform poorly due to the extreme diversity and lack of
+                        shared features among subclasses belonging to the same superclass</span>, as illustrated in
+                    Figure 1.</li>
+
+                <div class="img" style="text-align:center">
+                    <img class="img_responsive" src="./coarse and fine_fin.svg" alt="Class hierarchy"
+                        style="margin:auto;max-width:40%">
+                    <figcaption>Figure 1: Example of class hierarchy. The superclass we proposed is at a higher level in
+                        the hierarchy tree, compared with traditional coarse-grained and fine-grained classification.
+                    </figcaption>
+                </div>
+                <br>
+
+                <li><span style="color: green;"><u>(Subsection <span class="roman-numeral">III-A</span>)</u></span> The
+                    ultimate goal is to <span style="color: blue;">train a classifier that can accurately categorize
+                        instances into their respective superclasses, despite the lack of common features within each
+                        superclass</span>. We mathematically formalize this problem by introducing key notations and
+                    defining the superclass dataset $D$ with $K$ superclasses, where each superclass $S_i$ has $m_i$
+                    subclasses, and samples within these subclasses share few common features.
+                </li>
+            </ul>
+        </section>
+
+        <section id="main-results">
+            <h2>3. Superclasses and Contrastive Learning</h2>
+            <p>We establish connections between superclass learning and contrastive learning, and propose key metrics
+                for analyzing superclass learning performance.</p>
+
+            <ul>
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-B</span>)</u></span>
+                    <span style="color: red;"><strong>Difficulty for Superclass Classification.</strong></span>
+                    <br>
+                    We introduce the concept of data diversity to characterize the difficulty of superclass
+                    classification:
+                    $$
+                    \begin{aligned}
+                    v(\delta) = P\left[x \in S_\delta, \forall S_{i,j}, S_{k,l} \subset S_\delta, \frac{dist(S_{i,j},
+                    S_{k,l})}{\|\mu_{i,j} - \mu_{k,l}\|} \leq \delta\right]
+                    \end{aligned}
+                    $$
+                    <br>
+                    <span style="color: blue;">A smaller $\delta$ and a larger $v(\delta)$ correspond to higher
+                        diversity within subclasses and across the entire superclass, respectively, making
+                        classification more challenging</span>.
+                    <br>
+                        <div class="img" style="text-align:center">
+                            <img class="img_responsive" src="./def1-v2.svg" alt="$\delta$ diversity" style="margin:auto;max-width:40%">
+                            <figcaption>Figure 2: Illustration of $\delta$ diversity.
+                            </figcaption>
+                        </div>
+                    <br>
+                </li>
+
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-C</span>)</u></span>
+                    <span style="color: red;"><strong>Theorem 1: Bounds on Model Performance for Diverse
+                            Datasets.</strong></span>
+                    <br>
+                    Given an $L$-Lipschitz continuous encoder $f$ and a $v(\delta)$-diverse superclass dataset $D$ with
+                    $K$ superclasses each containing $m$ subclasses, if $f$ can distinguish $D$, then:
+                    $$
+                    \begin{aligned}
+                    \delta \geq \frac{1}{L}, \quad v(\delta) \leq \frac{1}{m}\sqrt{\frac{4B \cdot L \cdot D}{K(K-1)}}
+                    \end{aligned}
+                    $$
+                    <br>
+                    This theorem establishes that <span style="color: blue;">for a given model, there is an upper bound
+                        on the diversity of superclass datasets it can handle</span>. As the number of superclasses $K$
+                    and subclasses $m$ increases, the threshold for $v(\delta)$ becomes tighter, indicating increased
+                    classification difficulty.
+                    <br>
+                </li>
+
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-C</span>)</u></span>
+                    <span style="color: red;"><strong>Metrics for Alignment and Divergence.</strong></span>
+                    <br>
+                    We propose two key metrics for evaluating superclass learning:
+                    <br>
+                    1. <strong>Subclass Alignment</strong>: An encoder's ability to map similar samples to similar
+                    outputs. We define $\epsilon$-alignment as mapping an entire subclass into an $\epsilon$-ball:
+                    $$
+                    \begin{aligned}
+                    \text{diam}(f(S_{i,j})) \leq \epsilon
+                    \end{aligned}
+                    $$
+
+                    2. <strong>Superclass Divergence</strong>: The separation between different superclasses in the
+                    feature space, measured by:
+                    $$
+                    \begin{aligned}
+                    \sigma = \max_{i,j\in[K]} \mu_i^T \mu_j
+                    \end{aligned}
+                    $$
+
+                    <span style="color: blue;">A good classifier should achieve high subclass alignment (low
+                        $R_\epsilon$) and high superclass divergence (low $\sigma$)</span>.
+                    <br>
+                    <br>
+                        <div class="img" style="text-align:center">
+                            <img class="img_responsive" src="./def23-226.svg" alt="subclass alignment and superclass divergence" style="margin:auto;max-width:40%">
+                            <figcaption>Figure 3: Illustration of subclass alignment and superclass divergence.
+                            </figcaption>
+                        </div>
+                </li>
+
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-C</span>)</u></span>
+                    <span style="color: red;"><strong>Theorem 2: Generalization Bound for Superclass
+                            Learning.</strong></span>
+                    <br>
+                    For a classifier $G_f$ with encoder $f$, if the data diversity $v(\delta)$, subclass alignment
+                    $R_\epsilon$, and superclass divergence $\sigma$ satisfy:
+                    $$
+                    \begin{aligned}
+                    aR_\epsilon^2 + b\sigma^2 - cv^2(\delta) \leq C
+                    \end{aligned}
+                    $$
+
+                    Then, the expectation of downstream classification error is upper-bounded:
+                    $$
+                    \begin{aligned}
+                    \text{Err}(G) = \sum_{k=1}^{K} P[G_f(x) \neq k, x \in S_k] \leq 1 - v(\delta) + R_\epsilon
+                    \end{aligned}
+                    $$
+                    <br>
+                    <span style="color: blue;">This theorem shows that improving model alignment and increasing data
+                        diversity enhances generalization, while superclass divergence is necessary for strong
+                        generalization</span>.
+                    <br>
+                    <br>
+                </li>
+
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection III-C</span>)</u></span>
+                    <span style="color: red;"><strong>Theorem 3: Hypothesis Complexity for Superclass
+                            Learning.</strong></span>
+                    <br>
+                    For the same superclass dataset $D$, let $H_1$ be the minimal hypothesis set aligning and diverging
+                    $D$, and $H_2$ be the minimal hypothesis set distinguishing all subclasses, then:
+                    $$
+                    \begin{aligned}
+                    H_1 \subset H_2, \quad \Pi_{H_1}(N) \leq \Pi_{H_2}(N)
+                    \end{aligned}
+                    $$
+
+                    Where $\Pi_H(N)$ indicates the growth function of hypothesis $H$ and $N$ is the sample size. For a
+                    $v(\delta)$-diverse superclass, we acquire $\Pi_{H_2}(N) = O(N^N)$, and $\Pi_{H_1}(N) = O(N^K)$.
+
+                    <span style="color: blue;">This theorem indicates that explicitly identifying all subclasses before
+                        assigning superclass labels increases model complexity unnecessarily, potentially reducing
+                        generalization ability</span>.
+                    <br>
+                    <br>
+                    <div class="img" style="text-align:center">
+                        <img class="img_responsive" src="./error-0303.svg" alt="Compexity of hypothesis set"
+                            style="margin:auto;max-width:40%">
+                        <figcaption>Figure 4: Illustration of hypothesis complexity for superclass learning.
+                        </figcaption>
+                    </div>
+                </li>
+            </ul>
+        </section>
+
+        <section id="application">
+            <h2>4. SuperClass Learning with Representation Enhancement (SCLRE)</h2>
+            <p>Based on our theoretical framework, we propose a novel method called <span style="color: green;"><u>SCLRE
+                        (Section <span class="roman-numeral">IV</span>)</u></span> that achieves both subclass alignment
+                and superclass divergence without explicitly identifying all subclasses.</p>
+
+            <ul>
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection IV-A</span>)</u></span> <span
+                        style="color: red;"><strong>Feature Reconstruction.</strong></span>
+                    <br>
+                    SCLRE uses a cross-instance attention module to reconstruct the feature space, capturing
+                    relationships between representations of different instances rather than features within instances:
+                    $$
+                    \begin{aligned}
+                    a_{ij} = \frac{\exp(q_i k_j^T/\sqrt{D})}{\sum_{k=1}^{N} \exp(q_i k_k^T/\sqrt{D})}
+                    \end{aligned}
+                    $$
+
+                    <span style="color: blue;">This mechanism generates enhanced representations that better reflect the
+                        superclass structure</span>.
+                    <br>
+                    <br>
+                </li>
+
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection IV-B</span>)</u></span> <span
+                        style="color: red;"><strong>Representation Enhancement.</strong></span>
+                    <br>
+                    SCLRE employs two specialized loss functions:
+                    <br>
+
+                    1. <strong>Subclass Alignment Loss ($L_{sub}$)</strong>:
+                    $$
+                    \begin{aligned}
+                    L_{sub} = -\frac{1}{N}\sum_{i=1}^{N} \log \frac{\exp(s(z_i, t(z_i))/\tau)}{\sum_{t\in T}\exp(s(z_i,
+                    t)/\tau)}
+                    \end{aligned}
+                    $$
+                    <br>
+                    2. <strong>Superclass Divergence Loss ($L_{sup}$)</strong>:
+                    $$
+                    \begin{aligned}
+                    L_{sup} = \frac{1}{|S(z_i)| - 1}\sum_{i=1}^{N}\sum_{z^+\in S(z_i)\backslash\{z_i\}} \ell(z_i, z^+)
+                    \end{aligned}
+                    $$
+                    <br>
+                    <span style="color: blue;">These losses ensure that samples within the same superclass are aligned
+                        and samples from different superclasses are well-separated</span>.
+                    <br>
+                    <br>
+                </li>
+
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection IV-C</span>)</u></span> <span
+                        style="color: red;"><strong>Representation Decoding.</strong></span>
+                    <br>
+                    The final loss function of SCLRE combines cross-entropy loss with the specialized alignment and
+                    divergence losses:
+                    $$
+                    \begin{aligned}
+                    L_{SCLRE} = (1 - \alpha)L_{ce} + \alpha L_{sup} + \lambda L_{sub}, \alpha, \lambda \in (0, 1)
+                    \end{aligned}
+                    $$
+
+                    <span style="color: blue;">This combined loss enables SCLRE to adjust representations properly,
+                        running smoothly and converging steadily</span>.
+                    <br>
+                        <div class="img" style="text-align:center">
+                            <img class="img_responsive" src="./model.svg" alt="SCLRE model"
+                                style="margin:auto;max-width:40%">
+                            <figcaption>Figure 5: Illustration of the SCLRE algorithm.
+                            </figcaption>
+                        </div>
+                    <br>
+                    
+                </li>
+
+                <li><span style="color: green;"><u>(<span class="roman-numeral">Subsection IV-D</span>)</u></span> <span
+                        style="color: red;"><strong>Theoretical Analysis.</strong></span>
+                    <br>
+                    We prove that minimizing $L_{SCLRE}$ enhances both alignment and divergence:
+                    <br>
+                    <strong>Theorem 4:</strong> For fixed $\delta$, $\epsilon$, superclass divergence is bounded by:
+                    $$
+                    \begin{aligned}
+                    \sigma \leq \log(\exp\{C(T_2 + \tau(R_\epsilon, \delta, \epsilon))\} - \exp(1 - \epsilon))
+                    \end{aligned}
+                    $$
+
+                    <strong>Theorem 5:</strong> For any $\epsilon > 0$, subclass alignment is bounded by:
+                    $$
+                    \begin{aligned}
+                    R_\epsilon^2 \leq \eta(\epsilon) \cdot T_1
+                    \end{aligned}
+                    $$
+
+                    Furthermore, $T_3 > T_1 + 1$, indicating that $L_{sub}$ imposes a stronger constraint on alignment
+                    than $L_{sup}$.
+                    <br>
+                    <span style="color: blue;">These theorems demonstrate that SCLRE enhances both alignment and
+                        divergence, leading to better generalization especially when superclass data is highly
+                        diverse</span>.
+                    <br>
+                    <br>
+                </li>
+            </ul>
+        </section>
+
+        <section id="experiment-results">
+            <h2>5. Experiments</h2>
+            <ul>
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-A</span>)</u></span> <span
+                        style="color: red;"> <strong>Datasets.</strong></span> We evaluate our method on artificially
+                    reorganized superclass datasets from three benchmarks (CIFAR-100, mini-ImageNet, and VOC) and three
+                    real-world datasets (FMoW, Adience, and Image Aesthetic dataset).
+
+                    <div class="img" style="text-align:center">
+                        <img class="img_responsive" src="./dataset.svg" alt="CIFAR100-4 details"
+                            style="margin:auto;max-width:40%">
+                        <figcaption>Figure 6: Details of CIFAR100-4, showing the mapping between original classes and
+                            superclasses.</figcaption>
+                    </div>
+                </li>
+
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-B</span>)</u></span> <span
+                        style="color: red;"> <strong>Results on Artificially Reorganized Datasets.</strong></span>
+                    <div class="img" style="text-align:center">
+                        <img class="img_responsive" src="./artificial_dataset_results.png" alt="Artificial dataset results"
+                            style="margin:auto;max-width:80%">
+                        <figcaption>Table 1: Accuracy on artificially reorganized datasets. SCLRE significantly outperforms
+                            baseline methods on most datasets.</figcaption>
+                    </div>
+                </li>
+
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-B</span>)</u></span> <span
+                        style="color: red;"> <strong>Results on Real-World Datasets.</strong></span>
+                    <div class="img" style="text-align:center">
+                    <img class="img_responsive" src="./real_world_results.png" alt="Real-world results"
+                        style="margin:auto;max-width:80%">
+                    <figcaption>Table 2: Accuracy on real-world datasets. SCLRE outperforms both traditional methods and
+                        multimodal pre-trained models like CLIP.</figcaption>
+                    </div>    
+                </li>
+
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-B</span>)</u></span> <span
+                        style="color: red;"> <strong>Visualization Results.</strong></span>
+                    <div class="img" style="text-align:center">
+                        <img class="img_responsive" src="./cifar10.svg" alt="Visualization"
+                            style="margin:auto;max-width:80%">
+                        <figcaption>Figure 7: Visualization results using t-SNE on CIFAR10-2. SCLRE effectively clusters
+                            images from the same superclass while separating different superclasses.</figcaption>
+                    </div>
+                </li>
+
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-C & V-D</span>)</u></span>
+                    <span style="color: red;"> <strong>Ablation Studies and Sensitivity Analysis.</strong></span>
+                    
+                </li>
+                <div class="ablation-studies" style="margin-top: 20px;">
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap;">
+                        <div class="ablation-item" style="flex: 1; min-width: 30%; margin: 0 5px;">
+                            <img class="img_responsive" src="./alpha.png" alt="Alpha parameter ablation" style="width: 100%;">
+                            <figcaption style="text-align: center; margin-top: 8px;">(a) Effect of alpha parameter</figcaption>
+                        </div>
+                        <div class="ablation-item" style="flex: 1; min-width: 30%; margin: 0 5px;">
+                            <img class="img_responsive" src="./lambda.png" alt="Lambda parameter ablation" style="width: 100%;">
+                            <figcaption style="text-align: center; margin-top: 8px;">(b) Effect of lambda parameter</figcaption>
+                        </div>
+                        <div class="ablation-item" style="flex: 1; min-width: 30%; margin: 0 5px;">
+                            <img class="img_responsive" src="./batch.png" alt="Batch size ablation" style="width: 100%;">
+                            <figcaption style="text-align: center; margin-top: 8px;">(c) Effect of batch size</figcaption>
+                        </div>
+                    </div>
+                
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                        <div class="ablation-item" style="flex: 1; max-width: 45%; margin: 0 5px;">
+                            <img class="img_responsive" src="./loss.png" alt="Loss function ablation" style="width: 100%;">
+                            <figcaption style="text-align: center; margin-top: 8px;">(d) Effect of loss function</figcaption>
+                        </div>
+                        <div class="ablation-item" style="flex: 1; max-width: 45%; margin: 0 5px;">
+                            <img class="img_responsive" src="./backbone.png" alt="Backbone ablation" style="width: 100%;">
+                            <figcaption style="text-align: center; margin-top: 8px;">(e) Effect of backbone architecture</figcaption>
+                        </div>
+                    </div>
+                </div>
+            </ul>
+        </section>
+
+        <section id="contribution">
+            <h2>6. Contributions</h2>
+            <ul>
+                TODO
+            </ul>
+        </section>
+
+        <section id="code">
+            <h2>7. Code</h2>
+            <p>Access our research codebase at <a href="" target="_blank">TODO.</a>
+            </p>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 TODO, Renmin University of China, Beijing, China</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
