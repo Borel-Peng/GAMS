@@ -146,6 +146,16 @@
         <section id="problem">
             <h2>2. Problem Definition</h2>
             TODO
+            <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                <div class="ablation-item" style="flex: 1; max-width: 40%; margin: 0 20px;">
+                    <img class="img_responsive" src="./waste-0315.svg" alt="refuse" style="width: 100%;">
+                    <figcaption style="text-align: center; margin-top: 8px;">(a) Example of superclass: refuse sorting</figcaption>
+                </div>
+                <div class="ablation-item" style="flex: 1; max-width: 40%; margin: 0 20px;">
+                    <img class="img_responsive" src="./coarse and fine_fin.svg" alt="coarse and fine" style="width: 100%;">
+                    <figcaption style="text-align: center; margin-top: 8px;">(b) Example of coarse and fine grained</figcaption>
+                </div>
+            </div>
         </section>
 
 <section id="main-results">
@@ -169,6 +179,11 @@
                 classification
                 boundaries for superclasses should be. See figure 3.
             </p>
+            <div class="img" style="text-align:center">
+                <img class="img_responsive" src="./def1-v2.svg" alt="def1" style="margin:auto;max-width:40%">
+                <figcaption>Figure 3: Illustration of $\delta$-diversity .
+                </figcaption>
+            </div>
         </li>
         <span style="color: red;"><u><strong>Definition: $v(\delta)$-diversity</strong></u></span>
 
@@ -285,7 +300,12 @@
         $$
         \sigma=\underset{i,j\in[K]}{\max}\boldsymbol{\mu}_i^T\boldsymbol{\mu}_j.
         $$
-
+        <p style="color: blue;">We illustrate the definitions below.</p>
+        <div class="img" style="text-align:center">
+            <img class="img_responsive" src="./def23-0309.svg" alt="def23" style="margin:auto;max-width:40%">
+            <figcaption>Figure 4: Illustration of Definition 2 and 3.
+            </figcaption>
+        </div>
         <span style="color: red;"><u><strong>Theorem 2</strong></u></span><span style="font-style: italic;"> Given a classifier $G_f$ with an encoder $f$, if the data diversity $v(\delta)$,
             subclass alignment $R_\epsilon$,
             superclass divergence $\sigma$ satisfy:</span>
@@ -310,7 +330,11 @@
         validity of \cref{thm: restrict for bound} requires three factors: a small \( \sigma \), a small \( R_\epsilon \), and a
         large \( v(\delta) \). Even if the model exhibits strong alignment and the dataset is sufficiently diverse, poor
         superclass divergence (i.e., a large \( \sigma \)) can lead to the failure of generalization.</p>
-
+            <div class="img" style="text-align:center">
+                <img class="img_responsive" src="./thm2-0309.svg" alt="thm2" style="margin:auto;max-width:40%">
+                <figcaption>Figure 5: Illustration of Thm 2.
+                </figcaption>
+            </div>
         <span style="color: red;"><u><strong>Theorem 3</strong></u></span> <span style="font-style: italic;">For the same superclass dataset $\mathcal{D}$, let $\mathcal{H}_{1}$ be the minimal hypothesis set aligning and
         diverging $\mathcal{D}$, and $\mathcal{H}_{2}$ be the minimal hypothesis set distinguishing all subclasses, then,</span>
         $$
@@ -318,7 +342,12 @@
         $$
         <span style="color: red;"><u><strong>Corollary 3.1</strong></u></span><span style="font-style: italic;"> The generalization error of $\mathcal{H}_1$ on any superclass datasets is smaller
             than that of $\mathcal{H}_2$.</span>
-
+                    <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+                        <div class="ablation-item" style="flex: 1; max-width: 40%; margin: 0 20px;">
+                            <img class="img_responsive" src="./thm3-0309.svg" alt="thm3" style="width: 100%;">
+                            <figcaption style="text-align: center; margin-top: 8px;"></figcaption>
+                        </div>
+                    </div>
         <span style="color: blue;">
             <p style="color: blue;">\cref{fig:thm3} illustrates the relationship between \( \mathcal{H}_1 \) and \( \mathcal{H}_2 \). As model complexity
             increases, the training loss decreases, and the gap between training loss and test loss narrows. \( \mathcal{H}_0 \)
@@ -333,6 +362,11 @@
             is smaller, it is easier to find this global optimal solution. Therefore, \(\mathcal{H}_2\) is superior to
             \(\mathcal{H}_3\).</p>
         </span>
+                                <div class="img" style="text-align:center">
+                                    <img class="img_responsive" src="./hypo-0306.svg" alt="hypo" style="margin:auto;max-width:40%">
+                                    <figcaption>
+                                    </figcaption>
+                                </div>
         </li>
 
     </ul>
