@@ -154,31 +154,30 @@
             of the smoothness assumption as samples from different superclasses may share indistinguishable features while requiring
             distinct classifications (e.g., real apples vs. toy apples in waste sorting in Figure 1).
             </p>
-            <p>
-            We establish a Generalization Analysis Mechanism for Superclass (GAMS), the first theoretical framework for superclass
-            learning. GAMS identifies three key factors: (1) Data diversity, decomposed into subclass variety and intra-subclass
-            heterogeneity, which quantifies classification complexity; (2) Subclass alignment and superclass divergence as dual
-            mechanisms for generalization enhancement; (3) Version space compactness, demonstrating that unified
-            alignment-divergence optimization enables tighter hypothesis spaces than traditional two-stage approaches.
-            Theoretically, GAMS proves that model generalization is bounded by these factors, providing principled guidance for
-            algorithm design.
-            </p>
-            <p>
-            Guided by GAMS, we propose Superclass Learning with Representation Enhancement (SCLRE), which jointly optimizes subclass
-            alignment and superclass divergence through novel loss functions. Our framework theoretically reduces version space
-            complexity while improving generalization bounds, addressing the core challenges of superclass learning through a
-            unified representation enhancement paradigm.
-            </p>
+
             <div style="display: flex; justify-content: center; flex-wrap: wrap;">
                 <div class="ablation-item" style="flex: 1; max-width: 40%; margin: 0 20px;">
-                    <img class="img_responsive" src="./waste-0315.svg" alt="refuse" style="width: 100%;">
-                    <figcaption style="text-align: center; margin-top: 8px;">(a) Example of superclass: refuse sorting</figcaption>
-                </div>
-                <div class="ablation-item" style="flex: 1; max-width: 40%; margin: 0 20px;">
-                    <img class="img_responsive" src="./coarse and fine_fin.svg" alt="coarse and fine" style="width: 100%;">
-                    <figcaption style="text-align: center; margin-top: 8px;">(b) Example of coarse and fine grained</figcaption>
+                    <img class="img_responsive" src="./waste-0317.svg" alt="refuse" style="width: 100%;">
+                    <figcaption style="text-align: center; margin-top: 8px;">Figure 1: Example of superclass: refuse sorting</figcaption>
                 </div>
             </div>
+                        <p>
+                            We establish a Generalization Analysis Mechanism for Superclass (GAMS), the first theoretical framework for
+                            superclass
+                            learning. GAMS identifies three key factors: (1) Data diversity, decomposed into subclass variety and intra-subclass
+                            heterogeneity, which quantifies classification complexity; (2) Subclass alignment and superclass divergence as dual
+                            mechanisms for generalization enhancement; (3) Version space compactness, demonstrating that unified
+                            alignment-divergence optimization enables tighter hypothesis spaces than traditional two-stage approaches.
+                            Theoretically, GAMS proves that model generalization is bounded by these factors, providing principled guidance for
+                            algorithm design.
+                        </p>
+                        <p>
+                            Guided by GAMS, we propose Superclass Learning with Representation Enhancement (SCLRE), which jointly optimizes
+                            subclass
+                            alignment and superclass divergence through novel loss functions. Our framework theoretically reduces version space
+                            complexity while improving generalization bounds, addressing the core challenges of superclass learning through a
+                            unified representation enhancement paradigm.
+                        </p>
         </section>
 
 <section id="main-results">
@@ -208,16 +207,14 @@
                 </figcaption>
             </div>
         </li>
-        <span style="color: red;"><u><strong>Definition: $v(\delta)$-diversity</strong></u></span>
-
-        <p style="font-style: italic;">A superclass dataset is called $v(\delta)$-diverse if there exists a positive
+        <span style="color: red;"><u><strong>Definition: $v(\delta)$-diversity</strong></u></span><span style="font-style: italic;"> A superclass dataset is called $v(\delta)$-diverse if there exists a positive
             $\delta$ such that among all the
             subclasses in the superclass, there is a subset $S_\delta\subset \underset{i,j}{\cup} S_{i,j}$, in which the
             shortest
             relative distance between every pair of subclasses is less than $\delta$ and the ratio of $S_\delta$ is
             $v(\delta)$.
             Specifically,
-        </p>
+        </span>
         $$
         v(\delta)=\mathbb{P}\left[\boldsymbol{x}\in S_\delta, \forall S_{i,j}, S_{k,l}\subset S_\delta,
         \frac{\text{dist}( S_{i,j},S_{k,l})}{\Vert\boldsymbol{\mu}_{i,j}-\boldsymbol{\mu}_{k,l}\Vert}\le\delta \right],
@@ -281,17 +278,16 @@
             remain as distinct as possible.
             Based on these two objectives, we propose the following two metrics:</p>
 
-        <span style="color: red;"><u><strong>Subclass alignment</strong></u></span>
-        <p>A model with good <em>alignment</em> ability should produce similar outputs for
+        <span style="color: red;"><u><strong>Subclass alignment</strong></u></span><span> A model with good <em>alignment</em> ability should produce similar outputs for
             similar samples. Mathematically, if a
             model can map an entire subclass into an $ \epsilon $-ball, we say that the model can $ \epsilon $-align
             this
             subclass. Further, we denote $ S_\epsilon $ as the union of all subclasses that can be $\epsilon$-aligned.
-        </p>
-
-        <span style="color: red;"><u><strong>Definition: $\epsilon$-align</strong></u></span><p style="font-style: italic;">Given a superclass classifier $f$ mapping the original samples into a new
+        </span>
+        <p></p>
+        <span style="color: red;"><u><strong>Definition: $\epsilon$-align</strong></u></span><span style="font-style: italic;"> Given a superclass classifier $f$ mapping the original samples into a new
             representation space. We call $f$ can
-            $\epsilon$-align a subclass $S_{i,j}$, if</p>
+            $\epsilon$-align a subclass $S_{i,j}$, if</span>
         $$
         \text{diam}(f(S_{i,j}))\le \epsilon,
         $$
@@ -311,15 +307,13 @@
         R_\epsilon=1-\mathbb{P}\left[S_\epsilon\cap S_\delta\right].
         $$
 
-        <span style="color: red;"><u><strong>Superclass Divergence</strong></u></span>
-        <p>Simply aligning subclasses is not sufficient for effective superclass learning.
+        <span style="color: red;"><u><strong>Superclass Divergence</strong></u></span><span> Simply aligning subclasses is not sufficient for effective superclass learning.
             We define the concept of superclass
-            divergence:</p>
-
-        <span style="color: red;"><u><strong>Definition: Superclass Divergence</strong></u></span>
-        <p style="font-style: italic;">Denote $\boldsymbol{\mu}_k$ as each superclass center in the representation
+            divergence:</span>
+        <p></p>
+        <span style="color: red;"><u><strong>Definition: Superclass Divergence</strong></u></span><span style="font-style: italic;"> Denote $\boldsymbol{\mu}_k$ as each superclass center in the representation
             space. The divergence of an encoder can
-            be quantified by:</p>
+            be quantified by:</span>
         $$
         \sigma=\underset{i,j\in[K]}{\max}\boldsymbol{\mu}_i^T\boldsymbol{\mu}_j.
         $$
