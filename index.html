@@ -113,10 +113,10 @@
     <header>
         <h1 style="white-space: pre-line;">
             From Coarse-Grained to Super-Class: 
-            Explore the Extremes of Data Granularity
+            Exploring the Extremes of Data Granularity
         </h1>
         <div class="author">
-            <p>Anonymous Submission</p>
+            <p> </p>
             <!-- <div class="affiliation">
                 <p>School of Information, Renmin University of China, Beijing, 100872, China</p>
                 <p> School of Statistics, Renmin University of China, Beijing, 100872, China</p>
@@ -129,18 +129,23 @@
     <div class="container">
         <section id="abstract">
             <h2>1. Abstract</h2>
-            <p>Superclass, as the extreme of data granularity, refers to the highest level categorization that encompasses a diverse
-                array of basic-level subclasses, which exhibit few shared features in terms of highly abstract semantics. This
-                categorization essentially differs from coarse-grained classification methods, which group basic subclasses according to
-                identifiable feature commonalities, thereby rendering conventional classification methodologies less or even ineffective
-                in superclass problems. This study aims to tackle the challenges in superclass scenarios by leveraging contrastive
-                learning. Accordingly, we propose <strong>G</strong>eneralization <strong>A</strong>nalysis <strong>M</strong>echanism of <strong>S</strong>uperclass (<strong>GAMS</strong>) to uncover the fundamental
-                principles of superclass generalization. Specifically, GAMS theoretically unveils the hierarchical intricacy of
-                superclass learning and proves that the superclass generalization is controlled by three measures: sample diversity,
-                subclass alignment and superclass divergence. Moreover, GAMS explicitly reveals that compared to conventional
-                coarse-grained classification methods, simultaneously aligning subclasses and diverging superclasses contribute to lower
-                model complexity and better generalization. Guided by these findings, we propose a novel method for superclass learning,
-                and extensive experiments on 9 datasets confirm the advantages of our proposed method.</p>
+            <p>Superclass, as the extreme of data granularity, refers
+            to the highest level categorization that encompasses a diverse
+            array of basic-level subclasses. Essentially distinct from coarse-grained categories, superclass samples are grouped in terms
+            of highly abstract semantics and exhibit few shared features
+            in one common label. Consequently, conventional classification
+            methodologies become less or even ineffective in superclass
+            problems. This study aims to tackle the challenges in superclass scenarios by leveraging contrastive learning. Accordingly,
+            we propose Generalization Analysis Mechanism of Superclass
+            (GAMS) to explore and exploit the fundamental principles of superclass generalization. Specifically, GAMS theoretically unveils
+            the hierarchical intricacy of superclass learning and discovers
+            that the superclass generalization is controlled by two measures:
+            subclass alignment and superclass divergence. Furthermore,
+            GAMS explicitly reveals that compared to conventional coarse-grained classification methods, jointly aligning subclasses and
+            diverging superclasses contribute to lower model complexity and
+            stronger generalization. Guided by these findings, we propose a
+            novel method for superclass learning, and extensive experiments
+            on 9 datasets confirm the advantages of our proposed method.</p>
         </section>
 
         <section id="problem">
@@ -156,7 +161,7 @@
             </p>
 
             <div style="display: flex; justify-content: center; flex-wrap: wrap;">
-                <div class="ablation-item" style="flex: 1; max-width: 40%; margin: 0 20px;">
+                <div class="ablation-item" style="flex: 1; max-width: 60%; margin: 0 20px;">
                     <img class="img_responsive" src="./waste-0317.svg" alt="refuse" style="width: 100%;">
                     <figcaption style="text-align: center; margin-top: 8px;">Figure 1: Example of superclass: refuse sorting</figcaption>
                 </div>
@@ -164,12 +169,10 @@
                         <p>
                             We establish a Generalization Analysis Mechanism for Superclass (GAMS), the first theoretical framework for
                             superclass
-                            learning. GAMS identifies three key factors: (1) Data diversity, decomposed into subclass variety and intra-subclass
-                            heterogeneity, which quantifies classification complexity; (2) Subclass alignment and superclass divergence as dual
-                            mechanisms for generalization enhancement; (3) Version space compactness, demonstrating that unified
-                            alignment-divergence optimization enables tighter hypothesis spaces than traditional two-stage approaches.
-                            Theoretically, GAMS proves that model generalization is bounded by these factors, providing principled guidance for
-                            algorithm design.
+                            learning. GAMS identifies three key factors: 
+                            (1) Data diversity results in superclass intricacy;
+                            (2) Two factors contribute to superclass generalization.
+                            (3) A compact version space1 can be achieved.
                         </p>
                         <p>
                             Guided by GAMS, we propose Superclass Learning with Representation Enhancement (SCLRE), which jointly optimizes
@@ -189,8 +192,8 @@
         detailed Generalization Analysis Mechanism for Superclass (GAMS).</p>
     <ul>
         <li>
-            <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-B</span>)</u></span> <span
-                style="color: red;"> <strong>Difficulty for Superclass Classification.</strong></span>
+            <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-A</span>)</u></span> <span
+                style="color: red;"> <strong>Intricacy for Superclass Classification.</strong></span>
             <p>Why do traditional coarse-grained classification methods perform poorly on superclass data? One main
                 reason lies in the
                 diversity of superclasses. Diversity can be understood from two aspects: (1) the number of subclasses
@@ -199,11 +202,11 @@
             </p>
             <p> The more subclasses there are in the superclass, and the richer each subclass is, the more complex the
                 classification
-                boundaries for superclasses should be. See figure 3.
+                boundaries for superclasses should be.
             </p>
             <div class="img" style="text-align:center">
-                <img class="img_responsive" src="./def1-v2.svg" alt="def1" style="margin:auto;max-width:40%">
-                <figcaption>Figure 3: Illustration of $\delta$-diversity .
+                <img class="img_responsive" src="./def1-v2.svg" alt="def1" style="margin:auto;max-width:60%">
+                <figcaption>Figure 2: Illustration of $\delta$-diversity .
                 </figcaption>
             </div>
         </li>
@@ -237,46 +240,35 @@
             increasingly challenging, as is illustrated next:
         </p>
 
-        <span style="color: red;"><u><strong>Theorem 1</strong></u></span><span style="font-style: italic;"> Given a hypothesis set $\mathcal{H}$ containing $L$-Lipschitz continuous encoder
-            $f$, for any superclasses dataset
-            $\mathcal{D}$ with $v(\delta)$ diversity, if there exists a $f\in \mathcal{H}$ can distinguish all diverse
-            subsets
-            $S_\delta$ within $\mathcal{D}$ (i.e. images of different superclasses under $f$ should be orthogonal), then
-            the
-            following two bounds hold for $\mathcal{D}$:
+        <span style="color: red;"><u><strong>Theorem 1</strong></u></span><span style="font-style: italic;"> Suppose there is an encoder set $\mathcal{F}$, consisting of L-Lipschitz continuous encoders $f$. For any superclass
+        dataset $\mathcal{D}$ with $v(\delta)$ diversity, if there exists a $f\in \mathcal{F}$ that can distinguish all diverse
+        subclasses $S_\delta$ within $\mathcal{D}$ (i.e. samples of different superclasses under $f$ should be orthogonal), then
+        the following two bounds hold for $\mathcal{D}$:
         </span>
         $$
-        \delta\ge\frac{\sqrt{2}}{C\cdot L}, v(\delta)\le\sqrt{\frac{L\cdot B\cdot d}{\sqrt{2}K^3m^3}+\frac{1}{K}},
+        \delta\ge\frac{\sqrt{2}}{a\cdot L}, v(\delta)\le\sqrt{\frac{b\cdot L}{K^2m^2}+\frac{1}{K}}
         $$
         <p style="font-style: italic;">
             where $B$ is a bound on the data distribution, $B\le1$, and $d$ is the embedding dimension.
         </p>
 
-        <span style="color: blue;"> It states that, for a given model, if we want it to fully recognize a superclass
-            dataset, there must be an upper bound on
-            the diversity of the superclass dataset. In other words, for a given model, if the diversity of the
-            subclasses $ \delta
-            $ or the diversity of the superclasses $ v(\delta) $ exceeds a certain threshold, the model will inevitably
-            fail to
-            classify the whole dataset.
-            Moreover, as $ K $ and $ m $ increase, the threshold of $ v(\delta) $ tightens.
-            This indicates that an increase in the number of superclasses and subclasses improves the difficulty of
-            classification
-            task for a certain model.</span>
+        <span style="color: blue;"> It states that,states that,
+        for a given model, if the intra-subclass heterogeneity \( \delta \) or across-subclass variety \( v(\delta) \) exceeds a
+        certain threshold, the model will inevitably fail to classify the whole dataset. Meanwhile, as the numbers of
+        superclasses \( K \) and subclasses \( m \) increase, this threshold for \( v(\delta) \) tightens.
+        This indicates that both the increment in intra-subclass heterogeneity and across-subclass variety make superclass
+        learning much more intricate.
+        Thereby, a more complicated model is required to handle superclasses with growing diversity.</span>
 
-        <li> <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-C</span>)</u></span> <span
-                style="color: red;"> <strong>Metrics for Alignment and Divergence.</strong></span>
+        <li> <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-B</span>)</u></span> <span
+                style="color: red;"> <strong>Subclass Alignment and Superclass Divergence.</strong></span>
         </li>
-        <p>For standard classification tasks, we aim for the model to align all samples with the same label. However,
-            for
-            superclass data, because of its extreme diversity, it is exceedingly challenging to align the entire
-            superclass.
-            To address this, we relax the requirements for the classifier: instead of aligning the entire superclass, we
-            focus on
-            (1) aligning samples within most subclasses and (2) ensuring that the centers of subclasses from different
-            superclasses
-            remain as distinct as possible.
-            Based on these two objectives, we propose the following two metrics:</p>
+        <p> For ordinary-grained classification tasks, we aim the model to align all samples with the same label.
+        However, for superclass data, due to its extreme diversity, it is exceedingly challenging to align the entire
+        superclass.
+        Instead of directly aligning the entire superclass, we disentangle the representation enhancement into (1) aligning
+        heterogeneous samples within subclasses and (2) diverging subclasses with distinct superclass labels.
+        Accordingly, we present the following two measures: subclass alignment and superclass divergence.</p>
 
         <span style="color: red;"><u><strong>Subclass alignment</strong></u></span><span> A model with good <em>alignment</em> ability should produce similar outputs for
             similar samples. Mathematically, if a
@@ -285,7 +277,7 @@
             subclass. Further, we denote $ S_\epsilon $ as the union of all subclasses that can be $\epsilon$-aligned.
         </span>
         <p></p>
-        <span style="color: red;"><u><strong>Definition: $\epsilon$-align</strong></u></span><span style="font-style: italic;"> Given a superclass classifier $f$ mapping the original samples into a new
+        <span style="color: red;"><u><strong>Definition: $\epsilon$-align and subclass alignment</strong></u></span><span style="font-style: italic;"> Given a superclass classifier $f$ mapping the original samples into a new
             representation space. We call $f$ can
             $\epsilon$-align a subclass $S_{i,j}$, if</span>
         $$
@@ -311,23 +303,25 @@
             We define the concept of superclass
             divergence:</span>
         <p></p>
-        <span style="color: red;"><u><strong>Definition: Superclass Divergence</strong></u></span><span style="font-style: italic;"> Denote $\boldsymbol{\mu}_k$ as each superclass center in the representation
-            space. The divergence of an encoder can
-            be quantified by:</span>
+        <span style="color: red;"><u><strong>Definition: Superclass Divergence</strong></u></span><span style="font-style: italic;"> The superclass divergence $\sigma$ of an encoder $f$ is defined as the maximum inner product of each superclass pair in
+        the representation space,</span>
         $$
-        \sigma=\underset{i,j\in[K]}{\max}\boldsymbol{\mu}_i^T\boldsymbol{\mu}_j.
+        \sigma=\underset{i,j\in[K]}{\max}\vert\boldsymbol{\xi}_i^T\boldsymbol{\xi}_j\vert,
         $$
+        <p style="font-style: italic;">where $\boldsymbol{\xi}_k$ is the center of superclass $k$ in the representation space:
+        $\boldsymbol{\xi}_{k}=\underset{\boldsymbol{x}\in S_{k}}{\mathbb{E}}f(\boldsymbol{x})$.</p>
+
         <p style="color: blue;">We illustrate the definitions below.</p>
         <div class="img" style="text-align:center">
             <img class="img_responsive" src="./def23-0309.svg" alt="def23" style="margin:auto;max-width:40%">
-            <figcaption>Figure 4: Illustration of Definition 2 and 3.
+            <figcaption>Figure 3: Illustration of Definition 2 and 3.
             </figcaption>
         </div>
         <span style="color: red;"><u><strong>Theorem 2</strong></u></span><span style="font-style: italic;"> Given a classifier $G_f$ with an encoder $f$, if the data diversity $v(\delta)$,
             subclass alignment $R_\epsilon$,
             superclass divergence $\sigma$ satisfy:</span>
         $$
-        aR_\epsilon^2+b\sigma^2-cv^2(\delta)\le C.
+        c_1\cdot R_\epsilon+c_2\cdot\sigma-c_3\cdot v(\delta)\le C,
         $$
 
         <p style="font-style: italic;">Then, the expectation of downstream classification error is upper-bounded:</p>
@@ -336,9 +330,7 @@
         v(\delta)+R_\epsilon.
         $$
 
-        <p style="font-style: italic;">Where $a,b,c$ are positive constants decided by $\epsilon$ and $\delta$ and $C$
-            contains constants and linear/cross
-            terms. The exact form refers to the appendix.</p>
+        <p style="font-style: italic;">where $c_1,c_2,c_3, C$ are positive constants decided by $\epsilon$ and $\delta$.</p>
 
 
         <p style="color: blue;">Theorem2 implies that improving the model’s alignment and increasing data diversity enhances generalization. If \cref{thm:
@@ -348,42 +340,57 @@
         large \( v(\delta) \). Even if the model exhibits strong alignment and the dataset is sufficiently diverse, poor
         superclass divergence (i.e., a large \( \sigma \)) can lead to the failure of generalization.</p>
             <div class="img" style="text-align:center">
-                <img class="img_responsive" src="./thm2-0309.svg" alt="thm2" style="margin:auto;max-width:40%">
-                <figcaption>Figure 5: Illustration of Thm 2.
+                <img class="img_responsive" src="./thm2-0322.svg" alt="thm2" style="margin:auto;max-width:40%">
+                <figcaption>Figure 4: Illustration of Thm 2.
                 </figcaption>
             </div>
-        <span style="color: red;"><u><strong>Theorem 3</strong></u></span> <span style="font-style: italic;">For the same superclass dataset $\mathcal{D}$, let $\mathcal{H}_{1}$ be the minimal hypothesis set aligning and
-        diverging $\mathcal{D}$, and $\mathcal{H}_{2}$ be the minimal hypothesis set distinguishing all subclasses, then,</span>
+
+        <li> <span style="color: green;"><u>(<span class="roman-numeral">Subsection III-C</span>)</u></span> <span
+                style="color: red;"> <strong>Version Space of Superclass Learning.</strong></span>
+        </li>
+        <p> There are two feasible approaches in superclass algorithm design. 
+            (1) Step-wise method: aligning all subclasses first and then separating them into different superclasses, which is
+            adopted by most existing coarse-grained classifications.
+            (2) Joint method: simultaneously aligning subclasses and diverging superclasses.
+            This subsection unveils that the second approach leads to a smaller version space and stronger model generalization.
+        </p>
+        <span style="color: red;"><u><strong>Theorem 3</strong></u></span> <span style="font-style: italic;">Let $\mathcal{H}_1$ and $\mathcal{H}_2$ be two hypothesis spaces for the joint and step-wise methods, respectively.
+            Then, in the sense of isometry, for any superclass dataset $D$, we have
+        </span>
         $$
-        \mathcal{H}_1\subset\mathcal{H}_2,\ \Pi_{\mathcal{H}_1}(N)<<\ \Pi_{\mathcal{H}_2}(N),
+        \mathcal{H}_1 \subset \mathcal{H}_2,
         $$
-        <span style="color: red;"><u><strong>Corollary 3.1</strong></u></span><span style="font-style: italic;"> The generalization error of $\mathcal{H}_1$ on any superclass datasets is smaller
+        and, 
+        $$
+        \quad V_{\mathcal{D}}({\mathcal{H}_1}) \subset V_{\mathcal{D}}({\mathcal{H}_2}),
+        $$
+        <span style="font-style: italic;">where $V_{\mathcal{D}}(\mathcal{H})$ denotes the version space of $\mathcal{H}$ on dataset $\mathcal{D}$.
+        </span>
+                    <div class="img" style="text-align:center">
+                        <img class="img_responsive" src="./hypo-0325-pm.svg" alt="hypo" style="margin:auto;max-width:40%">
+                        <figcaption> Figure 5: Illustration of Thm 3.
+                        </figcaption>
+                    </div>
+        <p></p>
+        <span style="color: red;"><u><strong>Corollary 3.1</strong></u></span><span style="font-style: italic;"> For any number of samples $N$, the following inequality holds:</span>
+        $$
+        \Pi_{\mathcal{H}_1}(N)<\Pi_{\mathcal{H}_2}(N),
+        $$
+        <span style="font-style: italic;">where $\Pi_{\mathcal{H}_1}(N)$ denotes the growth function of $\mathcal{H}_1$.
+        </span>
+        <p></p>
+        <span style="color: red;"><u><strong>Corollary 3.2</strong></u></span><span style="font-style: italic;"> The generalization error of $\mathcal{H}_1$ on any superclass datasets is smaller
             than that of $\mathcal{H}_2$.</span>
                     <div style="display: flex; justify-content: center; flex-wrap: wrap;">
                         <div class="ablation-item" style="flex: 1; max-width: 40%; margin: 0 20px;">
-                            <img class="img_responsive" src="./thm3-0309.svg" alt="thm3" style="width: 100%;">
-                            <figcaption style="text-align: center; margin-top: 8px;"></figcaption>
+                            <img class="img_responsive" src="./error-0323.svg" alt="thm3" style="width: 100%;">
+                            <figcaption style="text-align: center; margin-top: 8px;">Figure 6: Illustration of Col3.2.</figcaption>
                         </div>
                     </div>
         <span style="color: blue;">
-            <p style="color: blue;">\cref{fig:thm3} illustrates the relationship between \( \mathcal{H}_1 \) and \( \mathcal{H}_2 \). As model complexity
-            increases, the training loss decreases, and the gap between training loss and test loss narrows. \( \mathcal{H}_0 \)
-            represents the model with insufficient complexity, which, according to \cref{thm: complexity between normal class and
-            superclass:2}, has relatively high training loss. In contrast, both \( \mathcal{H}_1 \) and \( \mathcal{H}_2 \) achieve
-            near-zero training loss, but the unnecessarily high complexity of \( \mathcal{H}_2 \) leads to an increase in
-            generalization loss.
-            \cref{fig:nested} offers another perspective to \cref{thm: complexity between normal class and superclass:2}.
-            \(\mathcal{H}_0\subset\mathcal{H}_1\subset\mathcal{H}_2\), however, \(\mathcal{H}_0\) as a hypothesis space does not
-            contain the optimal solution, resulting in a relatively large generalization error for any model within it. On the other
-            hand, both \(\mathcal{H}_1\) and \(\mathcal{H}_2\) contain the global optimal solution. However, since \(\mathcal{H}_1\)
-            is smaller, it is easier to find this global optimal solution. Therefore, \(\mathcal{H}_2\) is superior to
-            \(\mathcal{H}_3\).</p>
+            <p style="color: blue;"></p>
         </span>
-                                <div class="img" style="text-align:center">
-                                    <img class="img_responsive" src="./hypo-0306.svg" alt="hypo" style="margin:auto;max-width:40%">
-                                    <figcaption>
-                                    </figcaption>
-                                </div>
+
         </li>
 
     </ul>
@@ -458,7 +465,7 @@
                         <div class="img" style="text-align:center">
                             <img class="img_responsive" src="./model.svg" alt="SCLRE model"
                                 style="margin:auto;max-width:40%">
-                            <figcaption>Figure 5: Illustration of the SCLRE algorithm.
+                            <figcaption>Figure 7: Illustration of the SCLRE algorithm.
                             </figcaption>
                         </div>
                     <br>
@@ -499,7 +506,7 @@
                     <div class="img" style="text-align:center">
                         <img class="img_responsive" src="./dataset.svg" alt="CIFAR100-4 details"
                             style="margin:auto;max-width:40%">
-                        <figcaption>Figure 6: Details of CIFAR100-4, showing the mapping between original classes and
+                        <figcaption>Figure 8: Details of CIFAR100-4, showing the mapping between original classes and
                             superclasses.</figcaption>
                     </div>
                 </li>
@@ -520,7 +527,7 @@
                         style="color: red;"> <strong>Results on Real-World Datasets.</strong></span>
                     <div class="img" style="text-align:center">
                     <img class="img_responsive" src="./real_world_results.png" alt="Real-world results"
-                        style="margin:auto;max-width:80%">
+                        style="margin:auto;max-width:60%">
                     <figcaption>Table 2: Accuracy on real-world datasets. SCLRE outperforms both traditional methods and
                         multimodal pre-trained models like CLIP.</figcaption>
                     </div>    
@@ -528,17 +535,27 @@
 
                 <li>
                     <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-B</span>)</u></span> <span
+                        style="color: red;"> <strong>Results of CLIP.</strong></span>
+                    <div class="img" style="text-align:center">
+                        <img class="img_responsive" src="./clip-results.png" alt="CLIP results"
+                            style="margin:auto;max-width:60%">
+                        <figcaption>Table 3: Accuracy of CLIP model</figcaption>
+                    </div>
+                </li>
+
+                <li>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-C</span>)</u></span> <span
                         style="color: red;"> <strong>Visualization Results.</strong></span>
                     <div class="img" style="text-align:center">
-                        <img class="img_responsive" src="./cifar10.svg" alt="Visualization"
-                            style="margin:auto;max-width:80%">
+                        <img class="img_responsive" src="./cifar10.png" alt="Visualization"
+                            style="margin:auto;max-width:60%">
                         <figcaption>Figure 7: Visualization results using t-SNE on CIFAR10-2. SCLRE effectively clusters
                             images from the same superclass while separating different superclasses.</figcaption>
                     </div>
                 </li>
 
                 <li>
-                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-C & V-D</span>)</u></span>
+                    <span style="color: green;"><u>(<span class="roman-numeral">Subsection V-D,E,F</span>)</u></span>
                     <span style="color: red;"> <strong>Ablation Studies and Sensitivity Analysis.</strong></span>
                     
                 </li>
@@ -572,23 +589,34 @@
             </ul>
         </section>
 
-        <section id="contribution">
-            <h2>6. Contributions</h2>
+        <section id="conclusions">
+            <h2>6. Conclusions</h2>
             <ul>
-                TODO
+                <p>We propose an under-study but realistic problem, superclass learning. As data diversity results in classification
+                intricacy, superclasses with massive and various basic-level subclasses can not be effectively handled by traditional
+                methods designed for coarse-grained and ordinary-grained categorization.</p>
+                <p>We establish a comprehensive generalization analysis mechanism for superclass learning, named GAMS. GAMS theoretically
+                unveils the hierarchical
+                intricacy of superclass learning and discovers two key factors for superclass generalization. Moreover, GAMS
+                exhibits that a more compact version space can be achieved to improve model generalization.</p>
+                <p>Guided by GAMS, we propose a novel superclass learning method, SCLRE.
+                \textcolor{green}{The loss function of SLCRE facilitates subclass alignment and superclass divergence. Moreover, we
+                offer a generalization bound for SCLRE by strict mathematical reasoning.</p>
+                <p>Extensive experiments across 6 artificial superclass datasets and 3 real-world datasets verify GAMS and demonstrate the
+                superiority of SCLRE.</p>
             </ul>
         </section>
 
         <section id="code">
             <h2>7. Code</h2>
-            <p>Access our research codebase at <a href="" target="_blank">TODO.</a>
+            <p>Access our research codebase is <a href="https://github.com/Borel-Peng/From-Coarse-Grained-to-Super-Class-Exploring-the-Extremes-of-Data-Granularity" target="_blank">here.</a>
             </p>
         </section>
     </div>
 
-    <footer>
-        <p>&copy; 2025 TODO, Renmin University of China, Beijing, China</p>
-    </footer>
+    <!-- <footer>
+        <p>&copy; 2025, Renmin University of China, Beijing, China</p>
+    </footer> -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
